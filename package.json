@@ -1,0 +1,36 @@
+{
+  "name": "scandit-ui5-scanner",
+  "displayName": "Scandit UI5 Scanner",
+  "version": "1.0.0",
+  "description": "SAP UI5 freestyle barcode scanner using Scandit via Cordova",
+  "scripts": {
+    "build:android": "node init && cordova build android",
+    "build:ios": "node init && cordova build ios",
+    "run:android": "node init && cordova run android",
+    "run:ios": "node init && cordova run ios",
+    "emulate:android": "cordova emulate android",
+    "prepare": "cordova prepare"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "cordova": {
+    "plugins": {
+      "scandit-cordova-datacapture-core": {},
+      "scandit-cordova-datacapture-barcode": {},
+      "cordova-plugin-add-swift-support": {}
+    },
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "dependencies": {
+    "cordova-plugin-add-swift-support": "2.0.2",
+    "scandit-cordova-datacapture-barcode": "6.28.4",
+    "scandit-cordova-datacapture-core": "6.28.4"
+  },
+  "devDependencies": {
+    "cordova": "^12.0.0"
+  }
+}

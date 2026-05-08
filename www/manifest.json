@@ -1,0 +1,78 @@
+{
+    "_version": "1.65.0",
+    "sap.app": {
+        "id": "com.example.scanditscanner",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}"
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": false,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "com.example.scanditscanner.view.Main",
+            "type": "XML",
+            "async": true,
+            "id": "mainView"
+        },
+        "dependencies": {
+            "minUI5Version": "1.120.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.example.scanditscanner.i18n.i18n"
+                }
+            },
+            "scanResults": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {
+                    "data": {
+                        "results": [],
+                        "scanning": false,
+                        "lastScanned": ""
+                    }
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "com.example.scanditscanner.view",
+                "controlId": "mainApp",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "name": "main",
+                    "pattern": "",
+                    "target": "main"
+                }
+            ],
+            "targets": {
+                "main": {
+                    "viewType": "XML",
+                    "viewName": "Main",
+                    "viewId": "main"
+                }
+            }
+        }
+    }
+}

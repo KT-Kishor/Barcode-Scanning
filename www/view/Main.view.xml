@@ -1,0 +1,88 @@
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    controllerName="com.example.scanditscanner.controller.Main">
+
+    <App id="mainApp">
+        <pages>
+            <Page
+                id="mainPage"
+                showNavButton="false">
+
+                <customHeader>
+                    <Bar>
+                        <contentLeft>
+                            <Title text="{i18n>appTitle}" />
+                        </contentLeft>
+                        <contentRight>
+                            <Button
+                                id="btnClear"
+                                text="{i18n>clearButton}"
+                                icon="sap-icon://clear-all"
+                                type="Transparent"
+                                press=".onClearResults"
+                                enabled="{= ${scanResults>/results}.length > 0}" />
+                        </contentRight>
+                    </Bar>
+                </customHeader>
+
+                <content>
+                    <VBox
+                        class="sapUiMediumMargin"
+                        alignItems="Center"
+                        width="100%">
+
+                        <!-- Scan / Stop toggle button -->
+                        <Button
+                            id="btnScan"
+                            text="{= ${scanResults>/scanning} ? ${i18n>stopScanButton} : ${i18n>scanButton} }"
+                            icon="{= ${scanResults>/scanning} ? 'sap-icon://stop' : 'sap-icon://camera' }"
+                            type="{= ${scanResults>/scanning} ? 'Reject' : 'Emphasized' }"
+                            press=".onToggleScan"
+                            class="sapUiSmallMarginBottom"
+                            width="80%" />
+
+                        <!-- Status text shown while scanning is active -->
+                        <Text
+                            id="txtScanStatus"
+                            text="{i18n>scanningStatus}"
+                            visible="{scanResults>/scanning}"
+                            class="sapUiSmallMarginBottom"
+                            textAlign="Center" />
+
+                        <!-- Result count badge -->
+                        <ObjectStatus
+                            id="objStatus"
+                            title="{i18n>resultsLabel}"
+                            text="{= ${scanResults>/results}.length + ' ' + ${i18n>itemsScanned} }"
+                            state="{= ${scanResults>/results}.length > 0 ? 'Success' : 'None' }"
+                            visible="{= ${scanResults>/results}.length > 0 }"
+                            class="sapUiSmallMarginBottom" />
+
+                    </VBox>
+
+                    <!-- Scanned results list -->
+                    <List
+                        id="resultList"
+                        items="{scanResults>/results}"
+                        noDataText="{i18n>noResultsText}"
+                        showSeparators="Inner">
+
+                        <items>
+                            <StandardListItem
+                                title="{scanResults>data}"
+                                description="{scanResults>symbology}"
+                                icon="sap-icon://bar-code"
+                                info="{scanResults>timestamp}"
+                                infoState="Success" />
+                        </items>
+                    </List>
+
+                </content>
+
+            </Page>
+        </pages>
+    </App>
+
+</mvc:View>
